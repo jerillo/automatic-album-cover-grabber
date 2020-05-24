@@ -7,8 +7,7 @@ To use this, you must get an `OAUTH_TOKEN` from spotify. This can be done [here]
 
 ## Usage
 1. Create a `secret.py` file containing your `OAUTH_TOKEN`
-2. Create a `./album_covers` directory
-3. To save album covers, run: 
+2. To save album covers, run: 
 ``` 
 python3 get-saved-album-covers.py 
 ```
