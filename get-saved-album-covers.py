@@ -1,4 +1,3 @@
-from secret import OAUTH_TOKEN
 import requests
 import json
 import urllib.request
@@ -30,13 +29,14 @@ def getSavedAlbumCovers():
     Saves all albums that result from making a Spotify API call to get the 
     your Saved Tracks by making repeated API calls at varying offsets.
     """
+    oauth_token = getOAuthToken()
     if not os.path.exists('./album_covers'):
         os.makedirs('./album_covers')
     for offset in range(OFFSET_RANGE):
         url = 'https://api.spotify.com/v1/me/tracks?limit=50&offset={}'.format(
             offset)
         response = requests.get(
-            url, headers={'Authorization': 'Bearer {}'.format(OAUTH_TOKEN)})
+            url, headers={'Authorization': 'Bearer {}'.format(oauth_token)})
 
         response_json = json.dumps(response.json(), indent=4)
 
@@ -45,6 +45,16 @@ def getSavedAlbumCovers():
             print(response_json, file=f)
 
         saveAlbumCovers(filename)
+
+
+def getOAuthToken():
+    """ 
+    Prompts user for OAuth Token.
+
+    @return OAuth Token
+    """
+    oauth_token = input('Enter your OAuth Token: ')
+    return oauth_token
 
 
 getSavedAlbumCovers()
