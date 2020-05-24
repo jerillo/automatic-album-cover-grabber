@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Secret
+secret.py
+
+# User generated files
+saved-tracks.json
+album_covers
+
+.DS_Store
